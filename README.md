@@ -16,6 +16,7 @@ docker scout quickview
 - docker push <<DOCKER_HUB_USER_NAME>>/mywebapp
 - replace the <<DOCKER_HUB_USER_NAME>> with your Docker Hub User Name
 - similar steps for Amazon ECR (Elastic Container Registry)
+- final image is available at https://hub.docker.com/repository/docker/linuxdock/mywebapp
 
 ## Test this on a Kind K8s cluster
 - kind create cluster -n mywebapp-demo
