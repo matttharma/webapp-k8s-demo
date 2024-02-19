@@ -1,4 +1,7 @@
-# Docker Build Info
+# Simple Web App in K8s Demo
+
+Here is a simple node.js web application along with the required yaml files for deploying it to a Kind Kubernetes cluster.
+I am using Docker Hub to publish the sample app image and pulling it for all future deployments in my Kind Kubernetes cluster.
 
 ## build the new image
 docker build -t mywebapp:v1.0.0 -f DockerFile .
@@ -6,7 +9,7 @@ docker build -t mywebapp:v1.0.0 -f DockerFile .
 ## Verify image
 docker scout quickview
 
-## Upload the image into docker hub registry
+## Upload the image into the docker hub registry
 - docker logout
 - docker login -u <<DOCKER_HUB_USER_NAME>>
 - docker tag mywebapp:v1.0.0 <<DOCKER_HUB_USER_NAME>>/mywebapp:latest
@@ -17,7 +20,10 @@ docker scout quickview
 ## Test this on a Kind K8s cluster
 - kind create cluster -n mywebapp-demo
 
-## Portforward to the app
+## Deploy the mywebapp
+- kubectl apply -f k8s/mywebapp.yaml
+
+## Port forward to the app
 - kubectl -n staging port-forward svc/mywebapp 8080:8080
 
 ## Final tests
@@ -25,7 +31,7 @@ docker scout quickview
 - curl -XGET http://localhost/hi
 - curl -XGET http://localhost/hello
 
-## Nginx Ingress controller
-- kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+I hope this will be helpful for someone starting their K8s journey!
+Cheers,
 
-
+Matt
